@@ -23,6 +23,16 @@ bool validacao(int argc, char *ip){
 	return false;
 }
 
+int get_inicio(int argc, char *argv[]){
+	int inicio = argc == 4 ? atoi(argv[2]) : INICIO;
+	return inicio < INICIO ? INICIO : inicio;
+}
+
+int get_final(int argc, char *argv[]){
+	int final = argc == 4 ? atoi(argv[3]) : argc == 3 ? atoi(argv[2]) : FINAL;
+	return final > FINAL ? FINAL : final;
+}
+
 void loading(int atual, int final){
 	printf("Scaneando porta %d de %d", atual, final);
 	fflush(stdout);
@@ -37,10 +47,8 @@ int main(int argc, char *argv[]){
 	int meusocket;
 	int conecta;
 	int porta;
-	int inicio = argc == 4 ? atoi(argv[2]) : INICIO;
-	if(inicio < INICIO) inicio = INICIO;
-	int final = argc == 4 ? atoi(argv[3]) : argc == 3 ? atoi(argv[2]) : FINAL;
-	if(final > FINAL) final = FINAL;
+	int inicio = get_inicio(argc, argv);
+	int final = get_final(argc, argv);
 	char *destino;
 	destino = argv[1];
 	struct sockaddr_in alvo;
