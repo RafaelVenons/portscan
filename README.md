@@ -3,6 +3,9 @@
 PortScan escrito na linguagem C
 
 ### Modo de usar
+Compile o arquivo
+gcc portscan.c -o portscan
+
 Para varrer todas as portas disponiveis:
 ./portscan 192.168.0.1
 
